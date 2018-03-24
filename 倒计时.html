@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+
+<body>
+	<div>
+		<span id="DD"></span>天
+		<span id="HH"></span>时
+		<span id="MM"></span>分
+		<span id="SS"></span>秒
+	</div>
+	<script>
+		var currentDate = new Date();  // 当下时间
+		var EndTime = new Date('2018/03/20 00:00:00')  //目标要到达的时间
+		EndDate = parseInt((EndTime - currentDate) / 1000) //获取时间
+
+		function show() {
+			var dd = Math.floor(EndDate / 3600 / 24);
+			var hh = Math.floor(EndDate / 60 / 60 % 24);
+			var mm = Math.floor(EndDate / 60 % 60);
+			var ss = Math.floor(EndDate % 60);
+			document.getElementById("DD").innerHTML = checkTime(dd)
+			document.getElementById("HH").innerHTML = checkTime(hh)
+			document.getElementById("MM").innerHTML = checkTime(mm)
+			document.getElementById("SS").innerHTML = checkTime(ss)
+			EndDate--;
+			if (EndDate < 0) {
+				document.getElementById("DD").innerHTML = "0";
+				document.getElementById("HH").innerHTML = "00";
+				document.getElementById("MM").innerHTML = "00";
+				document.getElementById("SS").innerHTML = "00";;
+			}
+		}
+
+		function checkTime(i){
+			if( i < 10){
+				i+="0";
+			}
+			return i;
+		}
+		setInterval("show()",1000)
+
+	</script>
+</body>
+
+</html>
